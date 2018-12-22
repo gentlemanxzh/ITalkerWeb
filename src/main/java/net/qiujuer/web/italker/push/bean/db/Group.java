@@ -6,7 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+@Entity
+@Table(name = "TB_GROUP")
 public class Group {
     // 这是一个主键
     @Id

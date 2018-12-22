@@ -9,7 +9,6 @@
         <webroots>
           <root url="file://D:\GitHub\ITalkerWeb\src\main\webapp" relative="/" />
         </webroots>
-        <sourceRoots />
       </configuration>
     </facet>
   </component>

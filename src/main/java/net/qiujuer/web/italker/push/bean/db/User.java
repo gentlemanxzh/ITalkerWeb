@@ -84,6 +84,7 @@ public class User {
     // 定义为懒加载，默认加载User信息的时候，并不查询这个集合
     @LazyCollection(LazyCollectionOption.EXTRA)
     // 1对多，一个用户可以被很多人关注，每一次关注都是一个记录
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<UserFollow> followers = new HashSet<>();
 
     // 我所有创建的群

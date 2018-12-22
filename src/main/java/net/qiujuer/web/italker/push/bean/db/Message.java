@@ -6,7 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
+@Entity
+@Table(name = "TB_MESSAGE")
 public class Message {
 
     public static final int TYPE_STR = 1; // 字符串类型
