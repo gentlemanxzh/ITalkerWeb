@@ -4,11 +4,13 @@ package net.qiujuer.web.italker.push.service;
 import com.google.common.base.Strings;
 import com.sun.org.apache.regexp.internal.RE;
 import net.qiujuer.web.italker.push.bean.api.account.AccountRspModel;
+import net.qiujuer.web.italker.push.bean.api.base.PushModel;
 import net.qiujuer.web.italker.push.bean.api.base.ResponseModel;
 import net.qiujuer.web.italker.push.bean.api.user.UpdateInfoModel;
 import net.qiujuer.web.italker.push.bean.card.UserCard;
 import net.qiujuer.web.italker.push.bean.db.User;
 import net.qiujuer.web.italker.push.factory.UserFactory;
+import net.qiujuer.web.italker.push.utils.PushDispatcher;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -132,13 +134,13 @@ public class UserService extends BaseService {
         //判断是否这些人是否有我已经关注的人，如果有，则返回关注状态中应该已经设置好状态
 
         //拿出我的联系人
-       final List<User> contacts = UserFactory.contacts(self);
+        final List<User> contacts = UserFactory.contacts(self);
         List<UserCard> userCards = searchUsers.stream()
                 .map(user -> {
                     //判断这个人是否是我自己或者是否在我的联系人中
                     boolean isFollow = user.getId().equalsIgnoreCase(self.getId())
                             //进行联系人的任意匹配，匹配其中的Id字段
-                            ||contacts.stream().anyMatch(contactUser -> contactUser.getId().equalsIgnoreCase(user.getId()));
+                            || contacts.stream().anyMatch(contactUser -> contactUser.getId().equalsIgnoreCase(user.getId()));
 
                     return new UserCard(user, isFollow);
                 }).collect(Collectors.toList());
